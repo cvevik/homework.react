@@ -29,7 +29,7 @@ describe('MovieSearchBox', () => {
                 "poster": "https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzBiXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_SX300.jpg"
             }
         ] as Movie[];
-        vi.spyOn(movieService, 'searchMoviesByTitle')
+        vi.spyOn(movieService, 'getMoviesByTitle')
             .mockImplementation(async () => testData);
         const mockOnSelectMovie = vi.fn();
         render(<MovieSearchBox onSelectMovie={mockOnSelectMovie} />)

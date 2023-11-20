@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { debounce } from '@mui/material/utils';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { searchMoviesByTitle } from '../services/movieService';
+import { getMoviesByTitle } from '../services/movieService';
 
 interface MovieSearchBoxProps {
     onSelectMovie: (movie: Movie | null) => void;
@@ -24,7 +24,7 @@ const MovieSearchBox: React.FC<MovieSearchBoxProps> = ({ onSelectMovie }) => {
                 async (
                     inputValue: string,
                     callback: (results?: readonly Movie[]) => void,
-                ) => callback(await searchMoviesByTitle(inputValue)),
+                ) => callback(await getMoviesByTitle(inputValue)),
                 400,
             ),
         [],

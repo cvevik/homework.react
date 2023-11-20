@@ -4,14 +4,6 @@ import MovieDescription from "./MovieDescription";
 
 describe('MovieDescription', () => {
     test('Loads proper data', async () => {
-        const testMovieWithDescription: Partial<MovieWithDescription> = {
-            genre: 'testGenre',
-            imdbRating: 'testRating',
-            country: 'testCountry',
-            language: 'testLanguage',
-            runtime: 'testRuntime',
-            plot: 'testPlot'
-        };
         const testMovie: Movie = {
             title: 'testTitle',
             year: 'testYear',
@@ -19,8 +11,16 @@ describe('MovieDescription', () => {
             imdbID: 'testId',
             type: 'testType'
         };
-        vi.spyOn(movieService, 'searchMovieById')
-            .mockImplementation(async () => testMovieWithDescription as MovieWithDescription);
+        const testMovieWithDescription: MovieWithDescription = Object.assign(testMovie, {
+            genre: 'testGenre',
+            imdbRating: 'testRating',
+            country: 'testCountry',
+            language: 'testLanguage',
+            runtime: 'testRuntime',
+            plot: 'testPlot'
+        });
+        vi.spyOn(movieService, 'getMovieById')
+            .mockImplementation(async () => testMovieWithDescription);
         render(<MovieDescription movie={testMovie} />);
 
         await waitFor(async () => {
